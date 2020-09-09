@@ -2,8 +2,9 @@ package main;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class Example1 {
+public class Example2 {
   private static final int noOfCores = Runtime.getRuntime().availableProcessors();
 
   public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class Example1 {
       Runnable runnable = () -> System.out.println(":) " +
         Thread.currentThread().getName()); // ball
 
-      service.execute(runnable); // throwing ball into the pool
+      Future<?> f = service.submit(runnable); // throwing the ball into the pool
 
       System.out.println(":( " + Thread.currentThread().getName());
 

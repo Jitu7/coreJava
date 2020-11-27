@@ -1,11 +1,12 @@
 package example2;
 
-public class Example2 {
+public class Example3 {
 
-    // in this example m1() and m2() is synchronized cz the lock is same object
+    // here the locks are different so m1() and m2() are not synchronized
     public static void main(String[] args) {
 
         A a = new A(); // not recommended
+        A b = new A();
 
         Thread t1 = new Thread() {
             @Override
@@ -17,12 +18,11 @@ public class Example2 {
         Thread t2 = new Thread() {
             @Override
             public void run() {
-                a.m2();
+                b.m2();
             }
         };
 
         t1.start();
         t2.start();
     }
-
 }

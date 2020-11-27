@@ -28,13 +28,14 @@ public class Example1 {
 
   }
 
-
   public static synchronized /*Example1.class*/ void d() {
 
   }
 
   /*
-  instance representing the class itself, we only have one instance of such class per ClassLoader
+  When the ClassLoader in Java which is the mechanism of JVM (managing the classes), when its loading the blue print
+  itself of the class, it actually creates an instance that refers to the blueprint itself.
+  we only have one instance of such class per ClassLoader
    */
   public static void e() {
     synchronized (Example1.class) {

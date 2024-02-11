@@ -10,6 +10,7 @@ public class Example2 {
         A a = new A();
 
         a.a(10);
+//        a.a(null); // CE: Ambiguous method call. Both
         a.a((String) null);
         a.a((Cat) null);
 

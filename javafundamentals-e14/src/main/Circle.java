@@ -13,7 +13,7 @@ public class Circle extends Shape { // is-A
     -   change behaviour -> overriding
      */
     int radius;
-    String area; // super
+    String area; // area from shape is hidden... we can still access using super but inside the class.
 
     void abc() {
 

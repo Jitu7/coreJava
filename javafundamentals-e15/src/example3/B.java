@@ -16,7 +16,11 @@ public class B extends A {
      */
     /*
     private void m2() { //CE
-        System.out.println("m2 overridden");
+        System.out.println("m2 not overridden");
     }
     */
+
+    public void m2() {
+        System.out.println("m2 overridden");
+    }
 }

@@ -59,3 +59,61 @@ important.
   * But suppose we delete the method with double parameter and call the method having int parameter with double value we
     will get CE. One workaround will be call it like (int) 10.0.
 
+## Packages and Access Modifiers
+* default package does n't have any name.
+
+## Encapsulation
+* It's a way of writing a class, such that you can not work with the fields which represents data directly. You have to
+  work with that in directly by using behaviour of the instance.
+* can be done by declaring field as private access mode, can access through getter(accessor)/setter(mutator).
+* And also calling directly fields and action on fields can't be intercepted in java as of Java 11. But in case of methods
+  we can do that. For example frameworks are already doing it.
+  * Smart Setter/Getter:
+    * validation, computation etc inside setter/getter.
+    * Not recommended as clean coding pov.
+    * its breaking Single Responsibility also.
+
+## Inheritance
+* Let's say we have a class A, then whatever method or field its having we can say that it's owned by class A.
+* class B extends A means B inherits from A,it inherits whatever is accessible depending on the access mode.
+* Whenever blueprint/ class starts directly from something that already exists and then also able to change or add things
+  that are inherited that is called as Particularisation and can be done in 4 ways:
+  * add new fields
+  * add new behaviours
+  * change fields --> hiding fields (Not recommended in clean code)
+  * change behaviour --> overriding
+* **Particularisation:** whenever a blueprint makes an object more particular type than one that is inherited.
+* **Uses:**
+  * Avoid duplication code.
+  * In real life for objects whatever things are common place in one place and by referring from other every time.
+  * Example: Ships _looks like_ boat, but it's bigger. Like create the general image and go on more particular type.
+* We have two kinds of **relationships** between prototypes of Object.
+  * class Circle extends Shape --> circle **_is-A_** shape
+  * class Owner **_has-A_** field Cat --> An object contain another object as field
+* IS-A relationship happens in case of Inheritance. And Has-A relation happens in case of aggregation or composition.
+* Multilevel inheritance in case of class is not possible i.e. we can not extend more than one class,
+  if we did not extend any class by default its object class.
+
+## Overriding (@Override just a source time annotation does not exist after compilation)
+* If you want to change the behaviour of inherited methods that called as overriding.
+  * **1st rule:** is always to have same signature.
+  * **2nd rule:** if the return type is Object then we can override with co-variant types (subtypes/child)
+    i.e. we can override **Numeber** with **Integer**, Integer extends Number
+  * **3rd rule:** while overriding we can use more public modes rather than private modes or same
+    and keep in mind if the method is private in parent it's not inherited itself.
+    * public > protected > package mode (default) > private
+  * **4th rule:** we can avoid throwing exception while overriding, but we can not through wider range of exception then the
+    method we override. Meaning we can override the method throwing IOException with its child FileNotFoundException.
+    But can not override it by throwing Exception which will result in CE.
+
+
+
+
+
+
+
+
+
+
+
+

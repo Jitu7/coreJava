@@ -1,4 +1,4 @@
-# coreJava
+# Core Java
 
 ## Classes and Final modifier [ e-8 ]
 * **Local Variable:**
@@ -16,7 +16,7 @@
       * For Example: Bottle with attribute volume
       * For this we will initialize the attribute at the time of object creation i.e. inside constructor. Because 
       constructor is the place where instance is created.
-    * Again it's not practical but we can initialize in Anonymous block too. 
+    * Again it's not practical, but we can initialize in Anonymous block too. 
 * **static Key word wrt variable:**
   * we can only declare variables of class as static. We can't have static variable somewhere locally.
   * When we declare a class variable as static, we say that the variable does not belong to the instance anymore.

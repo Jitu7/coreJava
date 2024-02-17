@@ -184,7 +184,15 @@ important.
   For example:
   * If you have some kind of functionality where two objects use one each other to implement the algorithm 
   of your application. Let's assume we have object A and object B they are using each other to implement some functionality.
-  ![](interface-1.png)
+  * ![](images/interface-1.png)
+  * The problem with above approach is we directly couple these two objects, and when you couple two objects not only their
+  responsibilities but also couple their implementations.
+  * The difference when we will implement this using interfaces are that logically A and B are not completely related one
+  to another only their responsibilities are related. Means that the implementation of responsibility of B is not important
+  for A. The advantage of this is that if we have change something in application in the future, lets say we found some 
+  better way of doing it by new implementation, then we will less code and maintainability of the application increases.
+  * ![](images/interface-2.png)
+  * 
   
 
 

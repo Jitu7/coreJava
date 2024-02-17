@@ -7,6 +7,7 @@
   * Like this we make local variable constant.
   * Keep in mind that method parameters are also part of local variable.
 * **class:**
+  * If the class is final we can not extend it anymore. 
   * Sometimes we want once we have assign a value to an attribute of a class, that value should remain there for every 
   instance of that class i.e. constant. Those instance variable we can declare final.
   * So the attribute of that instance will be stored in the memory at the time you create the instance itself.
@@ -32,8 +33,9 @@
       static final int x = 0;
     `
   * whenever you declare the variable we need to initialize it.
-  * Again it's not recommended but we can initialize static final variables in static block too.
-
+  * Again it's not recommended, but we can initialize static final variables in static block too.
+*  **final with method:**
+  * If the method is final we can not override it anymore though it can be inherited. But overloading does not care about final, so we can overload them.
 ## Static & Anonymous blocks in the class and Overloading
 * Initialization of the variable done before the execution of the static block.
 * When the class loaded for the 1st time into the memory all the static blocks executed in the order the way it is 
@@ -46,7 +48,9 @@ declared, and its only once.
 (by number, by type of at least one of them, order of types).
 * Only identifier and parameter are important when discussing overloading, so the return type of method is not 
 important.
-
+* access type(public, private ...) is not important.
+* And can over load static method with non-static method.
+* And it doesn't matter the return type as well as the exceptions its throwing.
     ` void a() {} `
 
     ` int a() { return 10; } // CE`
@@ -95,6 +99,7 @@ important.
   if we did not extend any class by default its object class.
 
 ## Overriding (@Override just a source time annotation does not exist after compilation)
+* Inheritance allows us in overriding.
 * If you want to change the behaviour of inherited methods that called as overriding.
   * **1st rule:** is always to have same signature.
   * **2nd rule:** if the return type is Object then we can override with co-variant types (subtypes/child)
@@ -105,9 +110,82 @@ important.
   * **4th rule:** we can avoid throwing exception while overriding, but we can not through wider range of exception then the
     method we override. Meaning we can override the method throwing IOException with its child FileNotFoundException.
     But can not override it by throwing Exception which will result in CE.
+* We can redefine static methods also but being static it's not called as overriding.
 
+## this(), super() and this, super
+* If there is an inheritance between two classes, then when we create an object of second class the first thing will 
+  happen is like it will call the constructor of first class in the default constructor.
+* Because if you remember Particularisation, lets say class B extends A then Java has to know what A is before creating
+  object for B.
+* When a developer does not provide a constructor, class provides a default one. Inside that constructor first statement
+  will be super().
+* Let's say we make the class A constructor as private, then class B won't be able to call class A constructor and we will
+  get compilation issue.
+* super() and this() can't be used together and both are first instruction in the constructor.
+* Super and this without parenthesis:
+  * Super: represent the parent instance
+  * this: represent the current instance
+  * These two keywords can be used inside constructor as well as behaviour of the class.
+## Polymorphism
+* One specific instance can take the shape, can have a form of all the 
+  more general types of the one that created instance.
 
+  `  B b = new B(); `
+  `  A a = new B(); `
+  
+  we can say that B can have the shape of B as well as shape of A.
+  
+* We can refer to an instance through all more general types of that object i.e. Parent ref can hold child instance. 
+* when you store the reference of an instance in the variable of a specific type, the instance is still the same in the
+  memory, the reference to the instance however stored in a different type and depending on the type in which you store
+  the reference to the instance, you will have or not have the possibility to access some of the members.
+* The rule being that you can access actually the members that are only declared and that are seen by the shape in which
+  the reference of the object was stored.
 
+## Abstract classes and Interfaces:
+* In java, we are using two kinds of structure that we use in java when we declare abstract prototypes 
+  i.e. abstract class and interface
+* If we declare the class as abstract we can not instantiate that class.
+* Rule: We can create an abstract class with non-abstract methods, 
+  but we can not create abstract methods without any abstract class.
+* We can create an empty abstract class too. 
+  * ex: HttpServlet class
+  * Another example would be if you want to create an api, you will always want to tell everything you need about your api
+* By declaring class as abstract we just specified that this class is in incomplete prototype. 
+  And this class has to be completed through inheritance by other classes.
+* If the method is final we can not override it anymore though it can be inherited. 
+  So we can not use final for abstract methods, it makes no sense.
+* Same thing in case of class, if we make the class final it can not be inherited anymore.
+  So we can not use final for abstract classes, it makes no sense.
+* Abstract classes can contain constructors, because when other class inherits this class and implements its method 
+  it will still call the parent class constructor.
+
+### Interface:
+* In java interface represents the contract. interface is still an abstract prototype.
+  `public abstract interface Playable{}`
+* Keep in mind the abstract key word is optional.
+* Till java 7 only things we were able to declare inside interface are 
+  * abstract methods (by default any method is public and abstract)
+  * static final variables.
+* From java 8 onwards we can declare non-abstract and static methods also in interface.
+  * default is the new keyword inside interface, for default method still the package modifier is public only.
+  * `
+    public default void m() {
+      System.out.println(":)");
+    } 
+  `
+* From Java 9 onwards we can declare **static methods** inside interface, **private** also.
+* When we inherit on interface from class we use implements keyword.
+* Same rules for Polymorphism is also applies to interfaces. 
+* We can inherit multiple inheritance, but wrt to class we can only inherit one class.
+* `public class Monster implements Scary, StoryCharacter {}`
+* `public interface Baz extends Foo, Bar {}`
+* Interfaces are contracts abstraction between objects that define functionality of your application.
+  For example:
+  * If you have some kind of functionality where two objects use one each other to implement the algorithm 
+  of your application. Let's assume we have object A and object B they are using each other to implement some functionality.
+  ![](/Users/jeetu/Desktop/Screenshot 2024-02-17 at 3.37.27 PM.png)
+  
 
 
 

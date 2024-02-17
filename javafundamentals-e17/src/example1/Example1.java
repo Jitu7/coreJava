@@ -13,8 +13,8 @@ public class Example1 {
         a1.m(); // B
         b1.m(); // B
 
-        a1.m1();
-        b1.m1();
+        a1.m1(); // static A
+        b1.m1(); // static B
 
 //        double x = 10.5;
 //        int y = (int) x;

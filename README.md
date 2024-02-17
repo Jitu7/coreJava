@@ -161,20 +161,23 @@ important.
   it will still call the parent class constructor.
 
 ### Interface:
-* In java interface represents the contract. interface is still an abstract prototype.
+* In java interface represents the contract use to decouple two implementations. Those two implementations had the privilege
+  of knowing from the contract, one of them what should except to consume and the second one what should be implemented.
+* Interface is still an abstract prototype.
   `public abstract interface Playable{}`
 * Keep in mind the abstract key word is optional.
 * Till java 7 only things we were able to declare inside interface are 
   * abstract methods (by default any method is public and abstract)
   * static final variables.
 * From java 8 onwards we can declare non-abstract and static methods also in interface.
-  * default is the new keyword inside interface, for default method still the package modifier is public only.
+  * **default** is the new keyword inside interface, for default method still the package modifier is public only.
   * `
     public default void m() {
       System.out.println(":)");
     } 
   `
 * From Java 9 onwards we can declare **static methods** inside interface, **private** also.
+* From clean code point of view avoid writing your own default methods.
 * When we inherit on interface from class we use implements keyword.
 * Same rules for Polymorphism is also applies to interfaces. 
 * We can inherit multiple inheritance, but wrt to class we can only inherit one class.
@@ -192,8 +195,52 @@ important.
   for A. The advantage of this is that if we have change something in application in the future, lets say we found some 
   better way of doing it by new implementation, then we will less code and maintainability of the application increases.
   * ![](images/interface-2.png)
-  * 
-  
+### Marker Interface:
+* If the interface does not inherit anything, does not have any methods then its called as Marker Interface.
+  It's just a way of marking characteristics of an object. 
+  Then you can use **instance of** operator to check it's of what type.
+* After annotations in Java 5 have introduced nowadays we are not using any more marker interfaces.
+* Using annotations we can mark classes, methods, constructors, parameters and so on. And its cleaner also.
+  So for Metadata purpose we are using annotations.
+
+### How do we consider the default method in Interface?
+* We can consider that the default method is a suggestion from Contract to how to implement a specific behaviour.
+  However, if we want to override it we can do though. Generally from clean code point of view avoid writing default methods.
+  But in some rare scenarios for re-usability purpose we use default methods.
+
+* In the below case in class Foo we will get compilation error, because it inherits both method m() 
+  and it has two default implementations. 
+  * ![](images/interface-3.png)
+* However, if the class also inherits the methods from another class, then the method inherited from 
+  the class has priority not the interface. And we will not get above compilation problem.
+  * ![](images/interface-4.png)
+
+### Where would be static methods used in interfaces?
+* Again in some cases if you want to avoid duplication of code, then you might use static methods.
+  * ![](images/interface-5.png)
+* And in case of factory design pattern also we can use static methods inside interface. 
+  Earlier we used to create by help of an abstract class and static methods inside. 
+  Or it was even a good idea to make it final class and make constructor private.
+
+### When do you know that you need to decouple two objects?
+* You will observe that in specific situations, if you only have one implementation and that will basically never change,
+  then we can do the relationship directly with the objects.
+
+### Functional Interfaces:
+* As long as the interface consists of only one abstract method, it's known as Functional interface. 
+  Keep in mind though it can contain multiple default and static methods. 
+* For functional interfaces we can use lambda expression. It adds some kind of functional syntax to java, just a way to
+  write some shorter syntax for some interfaces.
+
+## ENUMS:
+* We can create an ENUM by **enum** keyword. We can imagine this as a class that defines from 
+  the beginning that the number of instances we can use. And we can not create other instance of that class.
+* With enum we always start with enumerating the instances of these types. In below SMALL, MEDIUM, BIG 
+  are not some kind of primitives not Strings, they are instance of the Coffee object.
+  * ![](images/enum-1.png)
+* The equivalent of above if you want to write in Java is like below.
+  * ![](images/enum-2.png)
+* 
 
 
 

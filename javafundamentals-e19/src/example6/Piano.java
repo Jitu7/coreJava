@@ -1,6 +1,6 @@
 package example6;
 
-public class Piano implements Playable {
+public class Piano implements Instrument {
 
     @Override
     public void play() {

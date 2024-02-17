@@ -2,7 +2,7 @@ package example5;
 
 public final class EngineFactory {
 
-    private EngineFactory() {
+    private EngineFactory() { // now it can't be instantiated outside
     }
 
     public static Engine build(String type) {

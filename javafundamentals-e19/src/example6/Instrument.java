@@ -1,7 +1,7 @@
 package example6;
 
 @FunctionalInterface
-public interface Playable {
+public interface Instrument {
 
     void play();
 

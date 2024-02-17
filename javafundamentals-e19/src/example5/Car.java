@@ -5,6 +5,6 @@ public class Car {
     private Engine engine;
 
     public Car() {
-        this.engine = Engine.build("electric");
+        this.engine = Engine.build("electric"); // We decoupled it
     }
 }

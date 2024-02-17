@@ -2,13 +2,13 @@ package example6;
 
 public class Musician {
 
-    private Playable playable;
+    private Instrument instrument;
 
-    public Musician(Playable playable) {
-        this.playable = playable;
+    public Musician(Instrument instrument) {
+        this.instrument = instrument;
     }
 
     public void play() {
-        playable.play();
+        instrument.play();
     }
 }

@@ -184,9 +184,8 @@ important.
   For example:
   * If you have some kind of functionality where two objects use one each other to implement the algorithm 
   of your application. Let's assume we have object A and object B they are using each other to implement some functionality.
-  ![](/Users/jeetu/Desktop/Screenshot 2024-02-17 at 3.37.27 PM.png)
+  ![](interface-1.png)
   
-
 
 
 

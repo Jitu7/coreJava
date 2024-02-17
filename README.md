@@ -240,9 +240,12 @@ important.
   * ![](images/enum-1.png)
 * The equivalent of above if you want to write in Java is like below.
   * ![](images/enum-2.png)
+
+## Nested Types:
+* Avoid them with respect to clean code pov. Because it creates high coupling.
+
+## Modules: (Java 9 Project Jigsaw)
 * 
-
-
 
 
 

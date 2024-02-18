@@ -18,7 +18,7 @@ public class Example8 {
 //        list.remove(10); // IndexOutOfBoundException
 
         list.remove(3); // remove number at index 3
-        list.remove((Integer) 20); // remove 1st occurrence of 20
+        list.remove((Integer) 20); // remove(Object obj) removes 1st occurrence of 20
     }
 
 }

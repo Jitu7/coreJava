@@ -7,7 +7,7 @@ import java.util.TreeSet;
 Liskov principle:
 it says not to use something more than the contract offers you
 
-Never do like this it violates LISKOV principle
+Never do like this, it violates LISKOV principle
  */
 public class Example7 {
 

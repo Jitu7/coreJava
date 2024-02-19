@@ -25,7 +25,8 @@ public class Cat implements Comparable<Cat> {
         }
         return 0;*/
 
-        return this.age - o.age;
+        return this.age - o.age; // ascending
+//        return o.age - this.age; // descending
     }
 
     @Override

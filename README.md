@@ -307,12 +307,36 @@ important.
   * If two elements have the same hashCode (),
     they are not necessarily equal, but if the two elements are equal, they always have the same hashCode.
 * LinkedHashSet --> Less fast than HashSet in terms of finding elements.
-* TreeSet --> sorting is happened based on Comparator you provide or by using the natural sorting defined by the object.(Comparable)
+* **TreeSet** --> sorting is happened based on Comparator you provide or by using the natural sorting defined by the object.(Comparable)
 * TreeSet extends NavigableSet, NavigableSet extends SortedSet
+* TreeSet under the hood uses a **Black-Red** tree.
 * Example of liskov principle:
   * ![](images/liskov-1.png)
   * ![](images/liskov-2.png)
-* 
+* Comparable (I) --> Natural sorting order, override `public int compareTo(T o);`
+  * ![](images/comparable-1.png)
+* let's say we have a class from another library, we cannot change to sort that kind of object, we use Comparator<I>.
+  * Comparator<Dog>  ->  int compare(Dog d1, Dog d2)
+  * ![](images/comparator-1.png)
+* **Deque**
+  * Most used implementation of Deque is ArrayDeque.
+  * Deque can be used to implement Stacks and Queues.
+    * adding an element at the beginning
+    * adding the element at the end also
+    * retrieve/remove an element from the beginning
+    * retrieve/remove an element at the end
+    * Stacks works on LIFO, stacks have layers.
+    * Deque something looks like below
+       * beginning 1 2 3 4 5 6 end
+  * ![](images/deque-1.png)
+* **Map** --> Collection of associations(pairs), Key-Value
+* Even if the Map does not extend Collection, it is part of the Collection framework. 
+  You can check the documentation also.
+  * ![](images/map-1.png)
+* Rules:
+  * Keys are unique, instead of adding one more same key it will override.
+  * 
+    
 
 
 

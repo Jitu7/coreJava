@@ -1,6 +1,9 @@
 package example2;
 
 import java.security.SecureRandom;
+import java.util.stream.IntStream;
+
+import static example2.Main.bucket;
 
 public class Producer extends Thread {
 
@@ -14,10 +17,10 @@ public class Producer extends Thread {
         // 100
         while (true) {
 
-            synchronized (Main.bucket) {
-                if (Main.bucket.size() < 100) { // T1
+            synchronized (bucket) {
+                if (bucket.size() < 100) { // T1
                     int n = random.nextInt(1000); // [0, 999]
-                    Main.bucket.add(n);
+                    bucket.add(n);
                     System.out.println(Thread.currentThread().getName() +
                             " added value " + n + " to the bucket.");
                 }

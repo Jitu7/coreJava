@@ -1,5 +1,7 @@
 package example2;
 
+import static example2.Main.bucket;
+
 public class Consumer extends Thread {
 
     public Consumer(String name) {
@@ -8,14 +10,17 @@ public class Consumer extends Thread {
 
     @Override
     public void run() {
+
         while (true) {
 
             //  not synchronized
             // Tx
-            synchronized (Main.bucket) { // decide which is our monitor
-                if (!Main.bucket.isEmpty()) {
-                    int n = Main.bucket.get(0);
-                    Main.bucket.remove(0);
+            // whatever threads are comming here cannot skip synchronized block
+            // all threads will wait here till they got the lock
+            synchronized (bucket) { // decide which is our monitor
+                if (!bucket.isEmpty()) {
+                    int n = bucket.get(0);
+                    bucket.remove(0);
                     System.out.println(Thread.currentThread().getName()
                             + " took out the value " + n + " from the bucket.");
                 }
@@ -23,5 +28,6 @@ public class Consumer extends Thread {
 
             //  not synchronized
         }
+
     }
 }

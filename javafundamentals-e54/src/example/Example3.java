@@ -7,7 +7,7 @@ public class Example3 {
     int n;
     ReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public synchronized void increment() {
+    public void increment() { // y = 1
         try {
             lock.writeLock().lock();
             n++; // n = n+1
@@ -16,7 +16,7 @@ public class Example3 {
         }
     }
 
-    public synchronized int get() {
+    public int get() { // x = 1000   x/y = 1000
         try {
             lock.readLock().lock();
             return n;

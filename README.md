@@ -259,6 +259,84 @@ important.
 
 ## Modules: (Java 9 Project Jigsaw)
 
+* It offers us some functionality that helps in keeping the application a little bit more decoupled and more
+  maintainable.
+* From Java 9 onwards, JDK itself became modular. In Java 8 we have only one big monolithic jar file which is called RT
+  jar.
+* But now we have modules
+  * ![](images/modules-1.png)
+* Now instead of one jar file, we have multiple jar files.
+  * Advantages:
+    * First of all from the maintainability point of view, it helps us to keep our functionality decoupled.
+    * Modules allow us strong encapsulation.
+    * Public modifier in Java 8 means accessible everywhere, From Java 9 onwards It's accessible from outside of module
+      only if you declare that.
+    * Now we can choose which are the modules, that you want to deploy in your application.
+      * Imagine that you have an application with more modules, and it happens sometimes that you don't want to install
+        all
+        of them, Why because your client will not use all of them.
+      * Especially if you have a monolithic application, if you want to make it SOA, then the first step is to make it
+        modularized. In short answer by the help of modules, you can choose which of the modules you want to deploy.
+    * If you create an application with modules, then there is a tool in Java 9 called Jlink it will create a custom
+      image of your JDK that will contain only the needed modules for your application based on your declaration.
+    * In Java 8 just a hello world program will contain that 60–70MB of RT jar, that's not the case anymore from Java 9
+      onwards.
+    * Helps in containerization of the application.
+* Once you create a module, we have to create a module deployment-descriptor file (module-info.java).
+  * Inside this module descriptor we will add the specification of the module including what are the usages of the
+    module,
+    and what the module exports.
+  * At least you should have a module name.
+  * ![](images/modules-2.png)
+  * Dependencies between modules have to be explicitly declared. So a module basically has to specify which are the
+    packages
+    that are exported by that module, and it can export only part of the module. This is really helpful because now in a
+    module
+    you have functionality that is exported such that it can be consumed by the modules. But you have functionality that
+    is
+    purely hidden in the module itself and cannot be used from outside the module.
+  * For example, in JDK itself, modules starting with jdk are internal.
+  * ![](images/modules-3.png)
+* We can expose the package like below
+  * ![](images/modules-4.png)
+* And then, wherever we require that module, we have to add that in module descriptor
+  * ![](images/modules-5.png)
+  * ![](images/modules-6.png)
+* And along with that, we have to make sure the jar file of invoicing and delivery module know each-other.
+  So to know each other, a new kind of path for modules is implemented in Java 9 and this is called module-path.
+  Previously we only had classpath, and in the class path we add jar files which will contain classes that we will use
+  in our functionality.
+* However, in the case of module-path,
+  the main difference is that when starting the application, all the modules will be checked according to their
+  deployment-descriptor.
+  If the module does not exist, the application will not start at all. Which is not the case in class path.
+* For example, we have faced this issue: lets say we compile the application and then forget somehow to add the jar file
+  to the class path,
+  while starting the application nothing will happen and might be jar file will be used somewhere in the application for
+  specific functionality, and it will fail at Runtime with NoClassDefFoundError only when the class tries to load by
+  class loader.
+* And we can only expose the contracts from the module instead of the whole package also. And let's say in our example
+  delivery module requires invoice. And the main module requires delivery, let's say delivery module exposes some
+  classes
+  or exceptions from invoice module. In this, we cannot import those classes in the main module. There are two ways to
+  solve
+  this issue like we did in delivery module we can use require in the main module (Not recommended way).
+  Or else we can use transitive key word in delivery module descriptor itself. So that whoever consumes delivery will
+  get the
+  invoice module also.
+  * ![](images/modules-7.png)
+* Some developers even went further with this transitive keyword with modules, and they said I have some time the need
+  of
+  grouping part of modules, so i.e. I need just to be sure that if I need to add 10 modules then I have two options, I
+  have
+  to require all of them one by one into the module descriptor it will work.
+  Then say we have 5 other modules need the same then we have to add these 10 lines everywhere, or we can simplify that.
+  Let's create modules that do not contain any kind of functionality,
+  let's create some modules that just add the transitive requirements.
+  So that the one consumes that module will actually get no functionality from the module itself,
+  but it will get all the modules that are transitive.
+  * Example of above in JDK
+    * ![](images/modules-8.png)
 ## Collection Framework
 * Collection<E> contains collection of single element i.e. List, Set, Deque, Queue
 * In the collection is a group of elements that respect a kind of rules.
@@ -335,11 +413,6 @@ important.
   * ![](images/map-1.png)
 * Rules:
   * Keys are unique, instead of adding one more same key it will override.
-  * 
-    
-
-
-
 
 
 

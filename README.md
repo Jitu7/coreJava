@@ -261,7 +261,8 @@ important.
 
 * It offers us some functionality that helps in keeping the application a little bit more decoupled and more
   maintainable.
-* From Java 9 onwards, JDK itself became modular. In Java 8 we have only one big monolithic jar file which is called RT
+* From Java 9 onwards, JDK itself became modular.
+  In Java 8, we have only one big monolithic jar file which is called RT
   jar.
 * But now we have modules
   * ![](images/modules-1.png)
@@ -271,7 +272,7 @@ important.
     * Modules allow us strong encapsulation.
     * Public modifier in Java 8 means accessible everywhere, From Java 9 onwards It's accessible from outside of module
       only if you declare that.
-    * Now we can choose which are the modules, that you want to deploy in your application.
+    * Now we can choose which are the modules that you want to deploy in your application.
       * Imagine that you have an application with more modules, and it happens sometimes that you don't want to install
         all
         of them, Why because your client will not use all of them.
@@ -330,7 +331,8 @@ important.
   grouping part of modules, so i.e. I need just to be sure that if I need to add 10 modules then I have two options, I
   have
   to require all of them one by one into the module descriptor it will work.
-  Then say we have 5 other modules need the same then we have to add these 10 lines everywhere, or we can simplify that.
+  Then say we have five other modules need the same then we have to add these 10 lines everywhere,
+  or we can simplify that.
   Let's create modules that do not contain any kind of functionality,
   let's create some modules that just add the transitive requirements.
   So that the one consumes that module will actually get no functionality from the module itself,

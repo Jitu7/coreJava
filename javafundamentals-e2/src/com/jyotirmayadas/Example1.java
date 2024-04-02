@@ -46,7 +46,6 @@ public class Example1 {
         z2 = 0b101101010; // from SE-7 we can use binary numbers also [0, 1]
         System.out.println(z2);
 
-
     }
 
 }

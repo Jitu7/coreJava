@@ -1,5 +1,153 @@
 # Core Java
 
+## Classes [ e-1 ]
+
+* First of all class is considered as structure, blueprint in Java, which used to describe an Object.
+* Java is an object-oriented language. And this means that when you are thinking about functionality of a java program
+  you don't of it as a set of instructions that have a specific order and that process data from input data to output
+  data. You actually think as a Java program or Java application like the data being processed by the interaction
+  between objects that you create that you define. Based on the way we describe them, we make them, we put them to
+  interact with one another, it results the processing of the data.
+* Keywords in java are those words that are part of the language vocabulary.
+  * Example: package, class, new etc.
+  * We have 5 primitive data types in Java, that are considered as keyword in Java as well.
+    * byte, short, int, long, float, double, char, boolean
+  ```JAVA
+  package com.jyotirmayadas;
+
+  public class Cat {
+    // int data type as well as a keyword but String is not// int data type as well as a keyword but String is not
+    int age; // fields/attributes
+    String name;
+
+    Cat() {
+        System.out.println("A Cat is Created!!");
+    }
+
+    void sayMeow() { // behaviour
+        System.out.println("Meow! My name is " + this.name); // this is current object
+    }
+  }
+  
+  public class Example1 {
+
+    public static void main(String[] args) {
+        Cat x;
+        x = new Cat();
+
+        Cat y = new Cat();
+
+        var z = new Cat();
+
+        x.name = "Tom";
+        y.name = "Leo";
+        z.name = "Kitty";
+
+        x.age = 1;
+        y.age = 3;
+        z.age = 2;
+
+        System.out.println(x.name);
+        System.out.println(x.age);
+    }
+  }
+  
+  public class Example2 {
+
+    public static void main(String[] args) {
+        Cat cat = new Cat();
+        cat.name = "Tom";
+        cat.age = 3;
+        cat.sayMeow();
+
+        var cat1 = new Cat();
+        cat1.name = "Leo";
+        cat1.age = 5;
+        cat1.sayMeow();
+    }
+  }
+  ```
+* We have a couple of rules for the identifier in Java:
+  * 1xyz - incorrect, xyz1 - correct
+  * x yz, x yz - incorrect
+  * x=yz - incorrect, we can not use the operators which are part of language for other purpose
+  * x_yz - correct
+  * x$y - correct
+
+## Data types [ e-2 ]
+
+* We can classify the data types in two groups.
+  * primitives - numbers, characters, boolean (true / false)
+  * references - object
+* We can not use local variables until we initialize it.
+
+### primitives
+
+* 1byte - 8bit
+* byte < short(2 byte) < int(4 byte) < long(8 byte) < float(4 byte)  < double
+* char - 2byte, boolean
+* By default, integral representation is int and decimal representation is double.
+  That's why we use explicitly L and F for long and float.
+  ```JAVA
+  package com.jyotirmayadas;
+  
+  /**
+   * 2 types primitive, reference
+   * primitive
+   * ---------
+   *  1byte - 8bit
+   *                16-bit         32-bit          64-bit     32-bit        64-bit
+   *                ------         ------          ------     ------        -------
+   *  byte < short(2 byte) < int(4 byte) < long(8 byte) < float(4 byte)  < double
+   *  char - 2byte, boolean
+   *
+   *  by default integral representation is int
+   *  and decimal representation is double
+   *
+   */
+  public class Example1 {
+  
+    public static void main(String[] args) {
+  
+      byte b1; // 8-bit  2^8 = 256 [-128, 127] including zero
+      b1 = 10;
+  
+      System.out.println(b1);
+  
+      byte b2 = 20;
+      System.out.println(b2);
+  
+      short s1; // 16-bit
+      int i1; //  32-bit
+      long w1; // 64-bit
+  
+  //        w1 = 9999999999; // It will consider it from right side, so it will treat it as integer. 
+                            // That's how = operator works in java
+  
+      // in order to tell java to consider it as long we have to tell java by placing a small or capital L at the end
+      w1 = 9999999999L; //    L-> Literal
+  
+      int z1, z2 = 50, z3;
+  
+      z1 = 045; // base-8 [0-7]
+      System.out.println(z1); // Its printing 37 which is base-10
+  
+      z3 = 0xFF; // base-16 A - F [0, F]
+      System.out.println(z3); // base-10
+  
+      z2 = 0b101101010; // from SE-7 we can use binary numbers also [0, 1]
+      System.out.println(z2);
+  
+  
+    }
+  
+  }
+  ```
+
+## Decision control structures
+
+* The simplest operator to achieve decision structure is ternary operator. (?:)
+  ```JAVA int result = x < y ? 50 : 100;```
 ## Classes and Final modifier [ e-8 ]
 * **Local Variable:**
   * Once we assign a value to the final variable, it is stored in memory from this time onwards we can't change it anymore.
@@ -8,8 +156,8 @@
   * Keep in mind that method parameters are also part of local variable.
 * **class:**
   * If the class is final, we cannot extend it anymore. 
-  * Sometimes we want once we have assigned a value to an attribute of a class; that value should remain there for every 
-    instance of that class, i.e., constant.
+  * Sometimes we want once we have assigned a value to an attribute of a class; that value should remain there for every
+    instance of that class, i.e., Constant.
     Those instance variables we can declare final.
   * So the attribute of that instance will be stored in the memory at the time you create the instance itself.
     * One of the ways is to simply provide the value in the blueprint itself. That is by using = operator.
@@ -30,10 +178,10 @@
   * Even if you access the static variable by instance reference, at compile time it will be replaced by class name.
 * **final and static modifier for variable:**
   * order of modifiers does not matter.
-    `
+    ```JAVA
       final static int x = 0;
       static final int x = 0;
-    `
+    ```
   * whenever you declare the variable, we need to initialize it.
   * Again, it's not recommended, but we can initialize static final variables in static block too.
 *  **final with method:**
@@ -55,9 +203,14 @@ important.
 * access type (public, private ...) is not important.
 * And can over load static method with non-static method.
 * And it doesn't matter the return type as well as the exceptions its throwing.
-    ` void a() {} `
+    ```JAVA
+    void a() {
+    } 
 
-    ` int a() { return 10; } // CE`
+    int a() { 
+     return 10; // CE
+    }
+  ```
 * For Java, priority always is to choose the methods for which no implicit conversion is needed.
   * Example: 
   * if we have two methods on takes int another double, we call method with int value, the method takes int as 
@@ -72,8 +225,8 @@ important.
 
 ## Encapsulation
 * It's a way of writing a class, such that you cannot work with the fields which represent data directly.
-  You have to work with that in directly by using the behavior of the instance.
-* it can be done by declaring field as private access mode, can access through getter(accessor)/setter(mutator).
+  You have to work with that indirectly by using the behavior of the instance.
+* It can be done by declaring field as private access mode, can access through getter(accessor)/setter(mutator).
 * And also calling directly fields and action on fields can't be intercepted in java as of Java 11. 
   But in the case of methods, we can do that.
   For example, frameworks are already doing it.
@@ -133,11 +286,13 @@ important.
   * this represents the current instance
   * These two keywords can be used inside the constructor as well as the behavior of the class.
 ## Polymorphism
-* One specific instance can take shape, can have a form of all the more general types of the one that created instance.
 
-  `  B b = new B(); `
-  `  A a = new B(); `
-  
+* Java achieves polymorphism through inheritance.
+* One specific instance can take shape, can have a form of all the more general types of the one that created instance.
+  ```JAVA
+  B b = new B();
+  A a = new B();
+  ```
   we can say that B can have the shape of B as well as the shape of A.
   
 * We can refer to an instance through all more general types of that object i.e., Parent ref can hold child instance. 
@@ -170,25 +325,31 @@ important.
   Those two implementations had the privilege of knowing from the contract,
   one of them what should except to consume and the second one what should be implemented.
 * Interface is still an abstract prototype.
-  `public abstract interface Playable{}`
+  ```JAVA
+  public abstract interface Playable{
+  
+  }
+  ```
 * Keep in mind the abstract key word is optional.
 * Till java 7, the only things we were able to declare inside interface are 
   * abstract methods (by default, any method is public and abstract)
   * static final variables.
 * From java 8 onwards, we can declare non-abstract and static methods also in interface.
   * **default** is the new keyword inside the interface, for default method still the package modifier is public only.
-  * `
+  ```JAVA
     public default void m() {
       System.out.println(":)");
     } 
-  `
+  ```
 * From Java 9 onwards we can declare **static methods** inside interface, **private** also.
 * From clean code point of view, avoid writing your own default methods.
 * When we inherit an interface from class, we use implements keyword.
 * Same rules for Polymorphism are also applied to interfaces. 
 * We can inherit multiple inheritances, but wrt to class we can only inherit one class.
-* `public class Monster implements Scary, StoryCharacter {}`
-* `public interface Baz extends Foo, Bar {}`
+  ```JAVA
+    public class Monster implements Scary, StoryCharacter {}
+    public interface Baz extends Foo, Bar {}
+  ```
 * Interfaces are contracts abstraction between objects that define the functionality of your application.
   For example:
   * If you have some kind of functionality where two objects use one each other to implement the algorithm 

@@ -147,7 +147,9 @@
 ## Decision control structures
 
 * The simplest operator to achieve decision structure is ternary operator. (?:)
-  ```JAVA int result = x < y ? 50 : 100;```
+  ```JAVA 
+  int result = x < y ? 50 : 100;
+  ```
 ## Classes and Final modifier [ e-8 ]
 * **Local Variable:**
   * Once we assign a value to the final variable, it is stored in memory from this time onwards we can't change it anymore.

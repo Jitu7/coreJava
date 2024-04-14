@@ -152,15 +152,34 @@
   ```
 ## Classes and Final modifier [ e-8 ]
 * **Local Variable:**
-  * Once we assign a value to the final variable, it is stored in memory from this time onwards we can't change it anymore.
+  * Once we assign a value to the final variable, it is stored in memory from this time onwards we can't change
+    it anymore.
+  ```JAVA
+  final String name = "Bob";
+  ```
   * var key word makes it mandatory to initialize at the time of declaration only.
-  * Like this, we make local variable constant.
-  * Keep in mind that method parameters are also part of local variable.
+  ```JAVA
+    final var x = 10;
+  ```
+  * Like this, we make local variable constant, Keep in mind that method parameters are also part of local variable.
+  ```JAVA
+  void m1(final int x) {
+  // x = 10; // CE
+  }
+  ```
 * **class:**
-  * If the class is final, we cannot extend it anymore. 
-  * Sometimes we want once we have assigned a value to an attribute of a class; that value should remain there for every
-    instance of that class, i.e., Constant.
-    Those instance variables we can declare final.
+  * If the **class is final, we cannot extend** it anymore.
+  * Sometimes we want once we have assigned a value to an attribute of a class, that value should remain there for every
+    instance of that class, i.e., Constant. Those instance variables we can declare final.
+  ```JAVA
+  public class Dog {
+
+    // 1st way
+    final String name = "Bob"; // when we create instance of the Dog class
+                    // the attribute name come into existence
+
+  }
+  ```
   * So the attribute of that instance will be stored in the memory at the time you create the instance itself.
     * One of the ways is to simply provide the value in the blueprint itself. That is by using = operator.
       * But it's not very practical in a real life scenario. Because the value is fixed for every instance of that class.
@@ -168,15 +187,37 @@
       * For Example, Bottle with attribute volume
       * For this, we will initialize the attribute at the time of object creation i.e., inside constructor.
         Because constructor is the place where instance is created.
+      ```JAVA
+      public class Bottle {
+
+       // 2nd way provide the value at the time of creation
+       final double volume;
+
+       public Bottle(double volume) {
+        this.volume = volume;
+       }
+      }
+      ```
     * Again, it's not practical, but we can initialize in Anonymous block too. 
 * **static Key word wrt variable:**
   * we can only declare variables of class as static. We can't have a static variable somewhere locally.
   * When we declare a class variable as static, we say that the variable does not belong to the instance anymore.
-  * Its called as class variable, This variable value is always the same for that class, and to access it, we don't even 
-    need to have an instance.
-    We can refer to the variable directly from class.
+  * Its called as class variable, This variable value is always the same for that class, and to access it, we don't even
+    need to have an instance. We can refer to the variable directly from class.
   * The basic different is that suppose we have a class Foo and a static variable y, no matter how many instances we create 
     for Foo, we will have only one y.
+  ```JAVA
+  public class Foo {
+
+    int x;
+    static int y; // class variable
+                // doesn't belong to instance
+                // one value for all instances of class
+                // can't have static variable locally
+    static final int z = 50;
+
+  }
+  ```
   * Even if you access the static variable by instance reference, at compile time it will be replaced by class name.
 * **final and static modifier for variable:**
   * order of modifiers does not matter.
@@ -185,17 +226,32 @@
       static final int x = 0;
     ```
   * whenever you declare the variable, we need to initialize it.
+  ```JAVA
+  public static void main(String[] args) {
+    Foo f1 = new Foo();
+    Foo f2 = new Foo();
+
+    f1.x = 10;
+    f2.x = 20;
+
+    System.out.println(f1.x);
+    System.out.println(f2.x);
+
+    Foo.y = 10;
+    f1.y = 20; // Foo.y
+
+    System.out.println(Foo.y);
+  }
+  ```
   * Again, it's not recommended, but we can initialize static final variables in static block too.
 *  **final with method:**
-  * If the method is final, we cannot override it anymore though it can be inherited. 
-    But overloading does not care about finals, so we can overload them.
+* If the method is final, we **cannot override** it anymore though it **can be inherited**.
+  But _overloading does not care about finals_, so we can **overload** them.
 ## Static & Anonymous blocks in the class and Overloading
 * Initialization of the variable done before the execution of the static block.
-* When the class is loaded for the first time into the memory,
-  all the static blocks are executed in the order the way it is 
-  declared, and its only once.
+* When the class is loaded for the first time into the memory, all the static blocks are executed in the order
+  the way it is declared, and its only once.
 * After that anonymous block and after that constructor will be executed every time you create an instance.
-
 ## Overloading
 * Applies to methods as well as constructors in Java.
 * Multiple methods with the same identifier with in the same class, but the method should differ with parameter
@@ -287,8 +343,8 @@ important.
   * Super: represent the parent instance
   * this represents the current instance
   * These two keywords can be used inside the constructor as well as the behavior of the class.
-## Polymorphism
 
+## Polymorphism
 * Java achieves polymorphism through inheritance.
 * One specific instance can take shape, can have a form of all the more general types of the one that created instance.
   ```JAVA
@@ -296,7 +352,6 @@ important.
   A a = new B();
   ```
   we can say that B can have the shape of B as well as the shape of A.
-  
 * We can refer to an instance through all more general types of that object i.e., Parent ref can hold child instance. 
 * when you store the reference of an instance in the variable of a specific type, the instance is still the same in the
   memory, the reference to the instance, however, stored in a different type, and depending on the type in which you store

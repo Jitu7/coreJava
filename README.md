@@ -714,8 +714,114 @@ public class Cat {
 * Rules:
   * Keys are unique, instead of adding one more same key it will override.
 
+## Java New Features
 
+### Records (made a permanent feature of the Java language in JDK 16)
 
+* Records are called as data classes, more data, less behavior.
+* It gives a nice and short syntax. By default, record consists of
+  * all args constructor
+  * toString
+  * equals and hashcode
+  * getters (no setters)
+* It by default provides some sensible restrictions:
+  * immutable
+  * extent of immutability
+  * final as defined
+
+let's see an example of record and corresponding class
+
+* ```JAVA
+  record Cat(String name, int age) {}
+  ```
+* looks like below
+
+```JAVA
+  public final class Cat {
+
+  private final String name;
+  private final int age;
+
+  public Cat(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Cat cat = (Cat) o;
+    return age == cat.age && Objects.equals(name, cat.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, age);
+  }
+
+  @Override
+  public String toString() {
+    return "Cat{" +
+            "name='" + name + '\'' +
+            ", age=" + age +
+            '}';
+  }
+}
+```
+
+* However, as like normal class we can add new methods, override accessor method implement interfaces etc.
+
+```JAVA
+public record Dog(String name, int age) implements Comparable<Dog> {
+  @Override
+  public int compareTo(Dog o) {
+    return 0;
+  }
+}
+```
+
+### Pattern matching for instanceof (made a permanent feature of the Java language in JDK 16)
+
+```JAVA
+public class Example2 {
+
+  public static void main(String[] args) {
+    Number n = 10;
+
+    if (n instanceof Integer i) {
+      System.out.println(i);
+    }
+
+    if (n instanceof Integer i && i == 20) {
+      System.out.println(i);
+    }
+
+        /*
+        CE: can not find symbol i, because there is a possibility of 1st condition
+        might become false
+         */
+        /*if (n instanceof Integer i || i == 20) { // CE
+            System.out.println(i);
+        }*/
+  }
+}
+```
+
+### Sealed Classes
+
+* It gives us the possibility to restrict the inheritance chain. We can say that a specific class or interface can be
+  inherited by specific other classes.
+* Sealed classes are particularly useful when developing libraries or frameworks where you want to control the class
+  hierarchy and prevent external users from extending certain classes.
 
 
 

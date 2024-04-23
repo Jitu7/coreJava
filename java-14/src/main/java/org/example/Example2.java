@@ -9,5 +9,16 @@ public class Example2 {
             System.out.println(i);
         }
 
+        if (n instanceof Integer i && i == 20) {
+            System.out.println(i);
+        }
+
+        /*
+        CE: can not find symbol i, because there is a possibility of 1st condition
+        might become false
+         */
+        /*if (n instanceof Integer i || i == 20) { // CE
+            System.out.println(i);
+        }*/
     }
 }

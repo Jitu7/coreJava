@@ -32,4 +32,12 @@ public final class Cat {
     public int hashCode() {
         return Objects.hash(name, age);
     }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

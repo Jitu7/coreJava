@@ -1,6 +1,6 @@
 package example1;
 
-public class A1 { // outer
+public class A1 { // outer class
 
     int x; // this -> represents current instance of the class
     int z;
@@ -16,7 +16,7 @@ public class A1 { // outer
     default
     private
      */
-    class A2 /* extends A1 */ { // inner
+    class A2 /* extends A1 */ { // inner class
 
         int y;
         String z;

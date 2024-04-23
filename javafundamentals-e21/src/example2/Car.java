@@ -5,7 +5,7 @@ public class Car {
     private int x;
 
     /*
-    Engine can never exist with out car
+    Engine can never exist without car
      */
     class Engine {
         public void run() {

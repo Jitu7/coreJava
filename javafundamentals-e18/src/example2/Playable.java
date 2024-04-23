@@ -3,7 +3,7 @@ package example2;
 /*
     Upto Java SE7
  */
-public interface Playable { // abstract
+public abstract interface Playable { // abstract
 
     int x = 10; // public static final
 

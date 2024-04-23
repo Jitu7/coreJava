@@ -75,14 +75,12 @@
   * x$y - correct
 
 ## Data types [ e-2 ]
-
 * We can classify the data types in two groups.
   * primitives - numbers, characters, boolean (true / false)
   * references - object
 * We can not use local variables until we initialize it.
 
 ### primitives
-
 * 1byte - 8bit
 * byte < short(2 byte) < int(4 byte) < long(8 byte) < float(4 byte)  < double
 * char - 2byte, boolean
@@ -145,7 +143,6 @@
   ```
 
 ## Decision control structures
-
 * The simplest operator to achieve decision structure is ternary operator. (?:)
   ```JAVA 
   int result = x < y ? 50 : 100;
@@ -200,7 +197,7 @@
       ```
     * Again, it's not practical, but we can initialize in Anonymous block too. 
 * **static Key word wrt variable:**
-  * we can only declare variables of class as static. We can't have a static variable somewhere locally.
+  * We can only declare variables of class as static. We can't have a static variable somewhere locally.
   * When we declare a class variable as static, we say that the variable does not belong to the instance anymore.
   * Its called as class variable, This variable value is always the same for that class, and to access it, we don't even
     need to have an instance. We can refer to the variable directly from class.
@@ -219,6 +216,23 @@
   }
   ```
   * Even if you access the static variable by instance reference, at compile time it will be replaced by class name.
+  ```JAVA
+  public static void main(String[] args) {
+  Foo f1 = new Foo();
+  Foo f2 = new Foo();
+
+  f1.x = 10;
+  f2.x = 20;
+
+  System.out.println(f1.x);
+  System.out.println(f2.x);
+
+  Foo.y = 10;
+  f1.y = 20; // Foo.y
+
+  System.out.println(Foo.y);
+  }
+  ```
 * **final and static modifier for variable:**
   * order of modifiers does not matter.
     ```JAVA
@@ -226,23 +240,6 @@
       static final int x = 0;
     ```
   * whenever you declare the variable, we need to initialize it.
-  ```JAVA
-  public static void main(String[] args) {
-    Foo f1 = new Foo();
-    Foo f2 = new Foo();
-
-    f1.x = 10;
-    f2.x = 20;
-
-    System.out.println(f1.x);
-    System.out.println(f2.x);
-
-    Foo.y = 10;
-    f1.y = 20; // Foo.y
-
-    System.out.println(Foo.y);
-  }
-  ```
   * Again, it's not recommended, but we can initialize static final variables in static block too.
 *  **final with method:**
 * If the method is final, we **cannot override** it anymore though it **can be inherited**.
@@ -252,12 +249,55 @@
 * When the class is loaded for the first time into the memory, all the static blocks are executed in the order
   the way it is declared, and its only once.
 * After that anonymous block and after that constructor will be executed every time you create an instance.
+
+```JAVA
+package main;
+
+public class Cat {
+
+    // initialization of the variable done before the execution
+    // of the static block
+//    static String x = ":)";
+    final static String x;
+
+    final String name;
+
+    /*
+        When the class loaded for the 1st time into memory
+        all the static blocks executed in
+        the order the way it is declared
+     */
+    static {
+        x = ":)";
+        System.out.println(x);
+    }
+
+    // 1st anonymous block after that constructor
+    {
+        name = "Mitzy";
+        System.out.println("A");
+    }
+
+    Cat() {
+        System.out.println("A cat was created");
+    }
+
+
+    static {
+        System.out.println("B");
+    }
+
+    static void sayMeow() {
+        System.out.println("Meow!");
+    }
+}
+```
 ## Overloading
 * Applies to methods as well as constructors in Java.
 * Multiple methods with the same identifier with in the same class, but the method should differ with parameter
 (by number, by type of at least one of them, order of types).
-* Only identifier and parameter are important when discussing overloading, so the return type of method is not 
-important.
+* Only identifier and parameter are important when discussing overloading, so the **return type of method is not
+  important.**
 * access type (public, private ...) is not important.
 * And can over load static method with non-static method.
 * And it doesn't matter the return type as well as the exceptions its throwing.
@@ -278,10 +318,22 @@ important.
   * But suppose we delete the method with double parameter and call the method having int parameter with double value, we
     will get CE. One workaround will be call it like (int) 10.0.
 
-## Packages and Access Modifiers
-* default package does n't have any name.
+## Packages and Access Modifiers [ e-13 ]
 
-## Encapsulation
+* default package doesn't have any name. Package is the first instruction we will see in Java file if it belongs to any
+  project.
+* packages help us to group a list of java classes together.
+* From syntactical point of view package is a namespace. A namespace is a place where you can not have multiple
+  structures with the same name i.e. in the same package there can not be two classes with same name.
+
+### Access Modifiers for members of class
+
+* default access mode - package mode
+* public access mode
+* private mode
+* protected mode
+
+## Encapsulation [ e-14 ]
 * It's a way of writing a class, such that you cannot work with the fields which represent data directly.
   You have to work with that indirectly by using the behavior of the instance.
 * It can be done by declaring field as private access mode, can access through getter(accessor)/setter(mutator).
@@ -296,7 +348,8 @@ important.
 ## Inheritance
 * Let's say we have a class A, then whatever method or field its having we can say that it's owned by class A.
 * class B extends A means B inherited from A;it inherits whatever is accessible depending on the access mode.
-* Whenever blueprint/ class starts directly from something that already exists and then also able to change or add things
+* Whenever blueprint / class starts directly from something that already exists and then also able to change or add
+  things
   that are inherited that is called as Particularisation and can be done in four ways:
   * add new fields
   * add new behaviors
@@ -314,7 +367,7 @@ important.
 * Multilevel inheritance in case of class is not possible, i.e., we cannot extend more than one class if we do
   not extend any class by default its object class.
 
-## Overriding (@Override just a source time annotation does not exist after compilation)
+## Overriding (@Override just a source time annotation does not exist after compilation) [ e-15 ]
 * Inheritance allows us to override.
 * If you want to change the behavior of inherited methods that called as overriding.
   * **First rule:** is always to have the same signature.
@@ -346,7 +399,8 @@ important.
 
 ## Polymorphism
 * Java achieves polymorphism through inheritance.
-* One specific instance can take shape, can have a form of all the more general types of the one that created instance.
+* One specific instance can take a shape, can have a form of all the more general types of the one that created
+  instance.
   ```JAVA
   B b = new B();
   A a = new B();
@@ -435,7 +489,6 @@ important.
   However, if we want to override it, we can do though.
   Generally, from clean code point of view avoid writing default methods.
   But in some rare scenarios for re-usability purpose, we use default methods.
-
 * In the below case in class Foo, we will get compilation error because it inherits both method m() 
   and it has two default implementations. 
   * ![](images/interface-3.png)
@@ -477,7 +530,8 @@ important.
 
 ## Modules: (Java 9 Project Jigsaw)
 
-* It offers us some functionality that helps in keeping the application a little bit more decoupled and more
+* Module is a new concept in Java 9 is somehow a collection of packages.
+  It offers us some functionality that helps in keeping the application a little bit more decoupled and more
   maintainable.
 * From Java 9 onwards, JDK itself became modular.
   In Java 8, we have only one big monolithic jar file which is called RT
@@ -501,6 +555,8 @@ important.
     * In Java 8 just a hello world program will contain that 60–70MB of RT jar, that's not the case anymore from Java 9
       onwards.
     * Helps in containerization of the application.
+
+### exports and requires keyword
 * Once you create a module, we have to create a module deployment-descriptor file (module-info.java).
   * Inside this module descriptor we will add the specification of the module including what are the usages of the
     module,
@@ -544,6 +600,8 @@ important.
   get the
   invoice module also.
   * ![](images/modules-7.png)
+
+### transitive keyword
 * Some developers even went further with this transitive keyword with modules, and they said I have some time the need
   of
   grouping part of modules, so i.e. I need just to be sure that if I need to add 10 modules then I have two options, I
@@ -557,6 +615,28 @@ important.
   but it will get all the modules that are transitive.
   * Example of above in JDK
     * ![](images/modules-8.png)
+* From Java 10 onwards they have removed the java.ee module.
+
+### open and opens Keyword in module
+
+* we can use open keyword with module in module descriptor file. Which means it will apply to all the packages declared
+  in that module. It means that all the classes inside example module can not be used by other modules directly.
+* It is only accessible through reflection.
+  ```JAVA
+  open module example {
+
+  }
+   ```
+* If we don't want to open the whole module but we want to open some packages of the module we can use **opens**
+  keyword,
+  instead of **open**.
+  ```JAVA
+  module example {
+    opens example; // it is not accessible directly
+    // but it is by reflection 
+  }
+  ```
+
 ## Collection Framework
 * Collection<E> contains collection of single element i.e. List, Set, Deque, Queue
 * In the collection is a group of elements that respect a kind of rules.

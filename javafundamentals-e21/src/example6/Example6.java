@@ -9,9 +9,10 @@ public class Example6 {
             public void play() {
                 System.out.println("Playing!");
             }
+
         };
 
-        // implements
+//         implements
         Instrument i2 = () -> System.out.println("Playing!");
 
         i1.play();

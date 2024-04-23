@@ -11,7 +11,7 @@ public class Example1 {
         ConcurrentMap<Integer, String> m1 =
                 new ConcurrentHashMap<>(); // simple implementation of synchronized hashmap
 
-        // whenever there is a *SkipList* in the name, that kind of implementation shorts the value
+        // whenever there is a *SkipList* in the name, that kind of implementation sorts the value
         ConcurrentMap<Integer, String> m2 =
                 new ConcurrentSkipListMap<>(); // equivalent to TreeMap
 
